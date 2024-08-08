@@ -44,6 +44,7 @@ Xfile combines blockchain technology with IPFS to create a decentralized file ma
 Navigate to the project directory:
 
 cd Xfile_hack
+
 Install dependencies:
 
 npm install
@@ -52,4 +53,4 @@ Start the development server:
 
 npm start
 
-Links Project Presentation - https://docs.google.com/document/d/1YLyIPOidLOdlHjTtWOuDfYTiCB6kiNgaWCl1dYrZDi8/edit
+Links Project Presentation - https://docs.google.com/document/d/1YLyIPOidLOdlHjTtWOuDfYTiCB6kiNgaWCl1dYrZDi8/edit?usp=sharing
