@@ -54,3 +54,10 @@ Start the development server:
 npm start
 
 Links Project Presentation - https://docs.google.com/document/d/1YLyIPOidLOdlHjTtWOuDfYTiCB6kiNgaWCl1dYrZDi8/edit?usp=sharing
+
+
+Amoy Testnet Deployed Contracts
+
+IPFSStorage = 0x8148cf860EBE57b0371C2A947C838358f8dCd5c1
+
+ExamPaperManagement = 0x52E764B7262723e4b17DDAe61c8691A6629Bf5A5
