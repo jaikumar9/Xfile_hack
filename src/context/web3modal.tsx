@@ -19,7 +19,7 @@ const testnet = {
   name: 'Amoy',
   currency: 'Matic',
   explorerUrl: 'https://amoy.polygonscan.com/',
-  rpcUrl: ' https://80002.rpc.thirdweb.com',
+  rpcUrl: 'https://young-yolo-dew.matic-amoy.quiknode.pro/252343965bef19dc386283159927ef9e6fe5e403/',
 }
 
 // Metadata for your app

@@ -37,7 +37,7 @@ const UnlockForm = () => {
           const signer = web3Provider.getSigner();
         
           const contractAddress = process.env.NEXT_PUBLIC_IPFSSTORAGE_ADDRESS;
-          console.log('Contract Address:', contractAddress);
+          
 
           const contractABI = [
             {
@@ -116,28 +116,27 @@ const UnlockForm = () => {
                 "type": "function"
             }
         ];
-          console.log(contractABI);
-
+          
           if (!contractAddress || !contractABI) {
             throw new Error('Contract address or ABI not provided in environment variables.');
           }
 
           const contractIPFS = new ethers.Contract(contractAddress, contractABI, signer);
-          console.log("contractIPFS",contractIPFS);
+          
 
             // Fetch IPFS hash
             const ipfsHash = await contractIPFS.getFileIpfsHash(paperId);
-            console.log("i<<<<<<<<<<<<",ipfsHash);
+            
 
-            const ipfsUrl = `https://ipfs.io/ipfs/${ipfsHash}`;
-            console.log("ipfsUrl",ipfsUrl);
+            const ipfsUrl = `https://coral-yearling-bison-495.mypinata.cloud/ipfs/${ipfsHash}?pinataGatewayToken=5Q-ovtMSBTHlW-KyYXU6fzR9EWxtiNPylAAzK-Q5oUqd9Dg_Mw7FCmXkyIRqEMwE`;
+            
            
 
             // Fetch file content from IPFS
             const response = await fetch(ipfsUrl);
-            console.log("response",response);   
+           
             const data = await response.blob();
-            console.log("data",data);
+            
             setFileContent(data);
             setFileUrl(ipfsUrl);
 

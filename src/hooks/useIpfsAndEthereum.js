@@ -23,10 +23,10 @@ const useIpfsAndEthereum = () => {
           console.log(signer);
 
           const contractAddress = process.env.NEXT_PUBLIC_EXAM_PAPER_MANAGEMENT_CONTRACT_ADDRESS;
-          console.log('Contract Address:', contractAddress);
+          
 
           const contractABI = ABIEPM ;
-          console.log(contractABI);
+         
 
           if (!contractAddress || !contractABI) {
             throw new Error('Contract address or ABI not provided in environment variables.');
@@ -35,7 +35,7 @@ const useIpfsAndEthereum = () => {
           const contract = new ethers.Contract(contractAddress, contractABI, signer);
           setContract(contract);
 
-          console.log(contract);
+          
 
           const accounts = await web3Provider.listAccounts();
           if (accounts.length > 0) {
