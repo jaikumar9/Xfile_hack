@@ -32,8 +32,9 @@ Xfile combines blockchain technology with IPFS to create a decentralized file ma
 - **Frontend:** React.js with Tailwind CSS
 - **Backend:** Node.js with Express.js
 - **Blockchain:** Ethereum (Solidity) or another suitable blockchain platform
-- **Storage:** IPFS
+- **Storage:** IPFS and Pinata SDK
 - **Encryption:** AES-256
+- **NetWork** - Amoy Polygon Testnet
 
 ## How to Use
 
@@ -53,11 +54,20 @@ Start the development server:
 
 npm start
 
+**********************
+
+Special Thanks to - Mr. Adee Shaikh my friend, For Guiding me to complete this project.
+I used designing fronted Part from there Project.
+
+**********************
+
 Links Project Presentation - https://docs.google.com/document/d/1YLyIPOidLOdlHjTtWOuDfYTiCB6kiNgaWCl1dYrZDi8/edit?usp=sharing
 
+Live Project Link - https://xfile-hack.vercel.app/
 
 Amoy Testnet Deployed Contracts
 
 IPFSStorage = 0x8148cf860EBE57b0371C2A947C838358f8dCd5c1
 
 ExamPaperManagement = 0x52E764B7262723e4b17DDAe61c8691A6629Bf5A5
+
