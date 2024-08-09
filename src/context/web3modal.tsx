@@ -19,15 +19,15 @@ const testnet = {
   name: 'Amoy',
   currency: 'Matic',
   explorerUrl: 'https://amoy.polygonscan.com/',
-  rpcUrl: 'https://rpc-amoy.polygon.technology/',
+  rpcUrl: ' https://80002.rpc.thirdweb.com',
 }
 
 // Metadata for your app
 const metadata = {
   name: 'Xfile',
   description: 'Decentralized File Locker',
-  url: 'https://Xfile.vercel.app', // Ensure this matches your domain
-  icons: ['https://drive.google.com/uc?export=view&id=15E-Th6oVxc5iqNBNfHnkCCAy_6V858Tl']
+  url: 'https://xfile-hack.vercel.app/', // Ensure this matches your domain
+  icons: ['http://localhost:3000/']
 }
 
 // Create Ethers configuration with auth options

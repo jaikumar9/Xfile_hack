@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { ethers } from 'ethers';
 import useIpfsAndEthereum from '../hooks/useIpfsAndEthereum';
+import ABIIPFS from '../ABI/IPFSStorage.json'
 
 const UnlockForm = () => {
     const { contract, loading } = useIpfsAndEthereum(); // Use the hook
@@ -30,14 +31,113 @@ const UnlockForm = () => {
             // Call the unlockPaper function from the smart contract
             const tx = await contract.unlockPaper(paperId);
             await tx.wait();
+            
+
+            const web3Provider = new ethers.providers.Web3Provider(window.ethereum);
+          const signer = web3Provider.getSigner();
+        
+          const contractAddress = process.env.NEXT_PUBLIC_IPFSSTORAGE_ADDRESS;
+          console.log('Contract Address:', contractAddress);
+
+          const contractABI = [
+            {
+                "anonymous": false,
+                "inputs": [
+                    {
+                        "indexed": true,
+                        "internalType": "bytes32",
+                        "name": "fileId",
+                        "type": "bytes32"
+                    },
+                    {
+                        "indexed": false,
+                        "internalType": "string",
+                        "name": "ipfsHash",
+                        "type": "string"
+                    }
+                ],
+                "name": "FileUploaded",
+                "type": "event"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "fileId",
+                        "type": "bytes32"
+                    }
+                ],
+                "name": "getFileIpfsHash",
+                "outputs": [
+                    {
+                        "internalType": "string",
+                        "name": "",
+                        "type": "string"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "",
+                        "type": "bytes32"
+                    }
+                ],
+                "name": "ipfsFiles",
+                "outputs": [
+                    {
+                        "internalType": "string",
+                        "name": "",
+                        "type": "string"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "fileId",
+                        "type": "bytes32"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "ipfsHash",
+                        "type": "string"
+                    }
+                ],
+                "name": "uploadFile",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            }
+        ];
+          console.log(contractABI);
+
+          if (!contractAddress || !contractABI) {
+            throw new Error('Contract address or ABI not provided in environment variables.');
+          }
+
+          const contractIPFS = new ethers.Contract(contractAddress, contractABI, signer);
+          console.log("contractIPFS",contractIPFS);
 
             // Fetch IPFS hash
-            const ipfsHash = await contract.getIpfsHash(paperId);
-            const ipfsUrl = `https://blue-worldwide-tiger-431.mypinata.cloud/ipfs/${ipfsHash}`;
+            const ipfsHash = await contractIPFS.getFileIpfsHash(paperId);
+            console.log("i<<<<<<<<<<<<",ipfsHash);
+
+            const ipfsUrl = `https://ipfs.io/ipfs/${ipfsHash}`;
+            console.log("ipfsUrl",ipfsUrl);
+           
 
             // Fetch file content from IPFS
             const response = await fetch(ipfsUrl);
+            console.log("response",response);   
             const data = await response.blob();
+            console.log("data",data);
             setFileContent(data);
             setFileUrl(ipfsUrl);
 
