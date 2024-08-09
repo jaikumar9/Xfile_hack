@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 import axios from 'axios';
+import ABIEPM from '../ABI/ExamPaperManagement.json';
 
 const useIpfsAndEthereum = () => {
     const [provider, setProvider] = useState(null);
@@ -13,14 +14,19 @@ const useIpfsAndEthereum = () => {
 
     const initContract = async () => {
       try {
-        if (typeof window.ethereum !== 'undefined') {
+        if (typeof window.ethereum != 'undefined') {
           const web3Provider = new ethers.providers.Web3Provider(window.ethereum);
           const signer = web3Provider.getSigner();
           setProvider(web3Provider);
           setSigner(signer);
+          console.log(web3Provider);
+          console.log(signer);
 
           const contractAddress = process.env.NEXT_PUBLIC_EXAM_PAPER_MANAGEMENT_CONTRACT_ADDRESS;
-          const contractABI = JSON.parse(process.env.NEXT_PUBLIC_EXAM_PAPER_MANAGEMENT_CONTRACT_ABI);
+          console.log('Contract Address:', contractAddress);
+
+          const contractABI = ABIEPM ;
+          console.log(contractABI);
 
           if (!contractAddress || !contractABI) {
             throw new Error('Contract address or ABI not provided in environment variables.');
@@ -28,6 +34,8 @@ const useIpfsAndEthereum = () => {
 
           const contract = new ethers.Contract(contractAddress, contractABI, signer);
           setContract(contract);
+
+          console.log(contract);
 
           const accounts = await web3Provider.listAccounts();
           if (accounts.length > 0) {
@@ -45,7 +53,7 @@ const useIpfsAndEthereum = () => {
     };
 
     useEffect(() => {
-      initContract();
+      initContract(); 
     }, []);
 
     const connectWallet = async () => {
@@ -60,7 +68,7 @@ const useIpfsAndEthereum = () => {
           setAccount(account);
 
           const contractAddress = process.env.NEXT_PUBLIC_EXAM_PAPER_MANAGEMENT_CONTRACT_ADDRESS;
-          const contractABI = JSON.parse(process.env.NEXT_PUBLIC_EXAM_PAPER_MANAGEMENT_CONTRACT_ABI);
+          const contractABI = ABIEPM;
 
           if (!contractAddress || !contractABI) {
             throw new Error('Contract address or ABI not provided in environment variables.');
